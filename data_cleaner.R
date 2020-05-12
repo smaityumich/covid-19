@@ -49,3 +49,5 @@ plot(R_estimate)
 dev.off()
 
 plot(R_estimate)
+
+save.image(paste(path, 'R_Indore.rda'))
