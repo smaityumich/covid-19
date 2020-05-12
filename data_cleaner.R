@@ -44,10 +44,10 @@ R_estimate <- estimate_R(indore_counts$Counts,  method='parametric_si', config=l
                                           t_end=5:45, n1 = 500, mean_si = 3.96, std_si = 4.75,  
                                           n2 = 100, seed = 1, mcmc_control=list(init.pars=NULL, 
                                            burnin=10000, thin=500, seed=1)))
-pdf(paste(path, 'plot.pdf'))
+pdf(paste(path, 'R_indore_smaity.pdf'))
 plot(R_estimate)
 dev.off()
 
 plot(R_estimate)
 
-save.image(paste(path, 'R_Indore.rda'))
+save.image(paste(path, 'R_indore_smaity.rda'))
