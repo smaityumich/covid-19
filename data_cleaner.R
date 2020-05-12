@@ -1,7 +1,8 @@
 library(dplyr)
-raw_data1 = read.csv(file = 'D:/COVID/raw_data1.csv')
-raw_data2 = read.csv(file = 'D:/COVID/raw_data2.csv')
-raw_data3 = read.csv(file = 'D:/COVID/raw_data3.csv')
+path = 'C:/Users/maity/OneDrive/Documents/covid/'
+raw_data1 = read.csv(file = paste(path, 'raw_data1.csv', sep = ''))
+raw_data2 = read.csv(file = paste(path, 'raw_data2.csv', sep = ''))
+raw_data3 = read.csv(file = paste(path, 'raw_data3.csv', sep = ''))
 
 raw_data1 = raw_data1 %>% select(Date.Announced, Detected.District, Detected.State, Current.Status)
 raw_data2 = raw_data2 %>% select(Date.Announced, Detected.District, Detected.State, Current.Status)
@@ -39,4 +40,10 @@ rm('raw_data1', 'raw_data2', 'raw_data3', 'all_dates')
 indore_counts$Cumulative.Counts = cumsum(indore_counts$Counts)
 
 library(EpiEstim)
-R_estimate <- estimate_r(indore_counts$Counts,  method='uncertain_si', config=list(t_start=2:44, t_end=3:45, n1 = 500, n2 = 100, seed = 1, mcmc_control=list(init.pars=NULL, burnin=3000, thin=10, seed=1), si_parametric_distr = "off1G", plot=TRUE))
+R_estimate <- estimate_R(indore_counts$Counts,  method='parametric_si', config=list(t_start=2:42, 
+                                          t_end=5:45, n1 = 500, mean_si = 3.96, std_si = 4.75,  
+                                          n2 = 100, seed = 1, mcmc_control=list(init.pars=NULL, 
+                                           burnin=10000, thin=1000, seed=1)))
+pdf(paste(path, 'plot.pdf'))
+plot(R_estimate)
+dev.off()
