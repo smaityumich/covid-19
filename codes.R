@@ -36,7 +36,7 @@ IndoreInc.Table$Date=as.Date(IndoreInc.Table$Date)
 
 library(EpiEstim)
 
-R_Summary=estimate_R(IndoreInc.Table$x,method="parametric_si",config=make_config(list(mean_si=3.96,std_si=4.75)))
+R_Summary=estimate_R(IndoreInc.Table$x,method="parametric_si",config=list(t_start=2:42,t_end=5:45,n1=500,mean_si=3.96,std_si=4.75,n2=100,seed=1,mcmc_control=list(init.pars=NULL,burnin=10000,thin=1000,seed=1)))
 
 pdf("R_Indore.pdf")
 plot(R_Summary)
