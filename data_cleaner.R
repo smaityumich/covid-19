@@ -43,7 +43,9 @@ library(EpiEstim)
 R_estimate <- estimate_R(indore_counts$Counts,  method='parametric_si', config=list(t_start=2:42, 
                                           t_end=5:45, n1 = 500, mean_si = 3.96, std_si = 4.75,  
                                           n2 = 100, seed = 1, mcmc_control=list(init.pars=NULL, 
-                                           burnin=10000, thin=1000, seed=1)))
+                                           burnin=10000, thin=500, seed=1)))
 pdf(paste(path, 'plot.pdf'))
 plot(R_estimate)
 dev.off()
+
+plot(R_estimate)
