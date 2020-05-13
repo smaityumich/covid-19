@@ -14,7 +14,7 @@ for(i in 1:length(Districts))
   District.1=Data.1[Data.1$Detected.District==District,3]
   District.2=Data.2[Data.2$Detected.District==District,3]
   
-  District.3=Data.3[Data.3$Detected.District==District,c(3,10)]
+  District.3=Data.3[Data.3$Detected.District==District & Data.3$Current.Status=="Hospitalized",c(3,10)]
   
   if((length(District.1)+length(District.2)+nrow(District.3))>0)
   {
